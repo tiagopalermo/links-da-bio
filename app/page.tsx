@@ -8,64 +8,36 @@ import { ChevronRight } from "lucide-react";
    ───────────────────────────────────────────── */
 
 const hero = {
-  photo: "/images/tiago-portrait.jpg",
+  photo: "/images/tiago-portrait-nobg.png",
   name: "Tiago Palermo",
 };
 
-interface CardItem {
-  fallbackIcon: string;
-  eyebrow: string;
-  title: string;
-  subtitle: string;
-  href: string;
-  cta: string;
-  accent: string;
-  glow: string;
-}
+// Card 1 — Imersão (topo, título simples)
+const imersao = {
+  title: "Imersão Dominando a Shopee",
+  href: "https://imersao-page.vercel.app/",
+};
 
-const cards: CardItem[] = [
+// Card 2 — Mentoria (FEATURED, animado, com logo)
+const mentoria = {
+  title: "Mentoria Escala de Vendas",
+  logo: "/images/logo-mentoria.png", // usuário vai adicionar
+  href: "#", // TODO: adicionar link da mentoria
+};
+
+// Cards 3, 4, 5 — slim (só título + seta)
+const outrosCards = [
   {
-    fallbackIcon: "IDS",
-    eyebrow: "IMERSÃO DOMINANDO A SHOPEE",
-    title: "Aprenda ao Vivo comigo como Sair do Zero na Shopee",
-    subtitle:
-      "Em menos de 3 horas, você vai aprender o passo a passo exato que utilizo na minha operação pra vender muito todos os dias.",
-    href: "https://imersao-page.vercel.app/",
-    cta: "QUERO PARTICIPAR",
-    accent: "from-[#F08A2D] to-amber-400",
-    glow: "rgba(240,138,45,0.25)",
-  },
-  {
-    fallbackIcon: "DC",
-    eyebrow: "ANÁLISE PROFISSIONAL",
-    title: "Diagnóstico de Conta Shopee com um Especialista do Meu Time",
-    subtitle:
-      "PARE DE VENDER POUCO: Descubra o plano de 3 passos para transformar sua loja da Shopee em uma Máquina de Vendas e ultrapassar os R$100.000,00/mês em até 90 dias.",
+    title: "Diagnóstico de Conta Shopee",
     href: "https://tiagopalermo.com.br/escalablack/",
-    cta: "DIAGNÓSTICO DE CONTA",
-    accent: "from-sky-500 to-cyan-400",
-    glow: "rgba(56,189,248,0.25)",
   },
   {
-    fallbackIcon: "CP",
-    eyebrow: "FERRAMENTA GRATUITA",
-    title: "Calculadora de Lucro e ROAS Ideal",
-    subtitle: "Você sabe o lucro real de cada venda na Shopee?",
-    href: "https://isca-shopee.vercel.app/",
-    cta: "CALCULAR AGORA",
-    accent: "from-emerald-500 to-green-400",
-    glow: "rgba(52,211,153,0.25)",
-  },
-  {
-    fallbackIcon: "GC",
-    eyebrow: "SERVIÇO PROFISSIONAL",
-    title: "Gerenciamento de Conta Shopee",
-    subtitle:
-      "A gente cuida da sua Conta da Shopee pra você focar onde realmente precisa.",
+    title: "Gerenciamento de Conta",
     href: "https://tiago85.yayforms.net/OKRgkAQ",
-    cta: "SAIBA MAIS",
-    accent: "from-violet-500 to-purple-400",
-    glow: "rgba(167,139,250,0.25)",
+  },
+  {
+    title: "Calculadora de Lucro e ROAS",
+    href: "https://isca-shopee.vercel.app/",
   },
 ];
 
@@ -75,7 +47,7 @@ const cards: CardItem[] = [
 
 const stagger = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
 };
 
 const fadeUp = {
@@ -95,111 +67,181 @@ function HeroBanner() {
   return (
     <motion.div
       variants={fadeUp}
-      className="flex flex-col items-center mb-8 w-full"
+      className="relative flex flex-col items-center mb-2 w-full"
     >
-      {/* Foto + nome */}
-      <div className="relative w-[220px] sm:w-[260px] h-[260px] sm:h-[300px] rounded-[20px] overflow-hidden">
+      {/* Glow laranja radial atrás do Tiago */}
+      <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[420px] h-[420px] bg-[#F08A2D]/[0.10] rounded-full blur-[110px] pointer-events-none" />
+      <div className="absolute top-[25%] left-1/2 -translate-x-1/2 w-[280px] h-[280px] bg-[#F08A2D]/[0.08] rounded-full blur-[60px] pointer-events-none" />
+
+      {/* Foto recortada — sem fundo */}
+      <div className="relative w-[300px] sm:w-[340px] h-[360px] sm:h-[400px]">
         <img
           src={hero.photo}
           alt={hero.name}
-          className="absolute inset-0 w-full h-full object-cover object-top"
+          className="absolute inset-0 w-full h-full object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
         />
-        <div className="absolute bottom-0 left-0 right-0 h-[120px] bg-gradient-to-t from-[#090909] to-transparent z-10" />
-        <div className="absolute bottom-4 left-0 right-0 z-20 text-center">
-          <span
-            className="text-3xl text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] whitespace-nowrap"
-            style={{ fontFamily: "Blacksword" }}
-          >
-            Tiago Palermo
-          </span>
-        </div>
       </div>
 
-      {/* Frases */}
-      <div className="flex flex-col items-center gap-1 mt-4 text-center">
-        <p className="text-lg text-white/80 font-bold uppercase tracking-wide leading-tight whitespace-nowrap">
-          +200 MILHÕES GERADOS PELOS MEUS ALUNOS
-        </p>
-        <p className="text-xl text-[#F08A2D] font-extrabold uppercase tracking-wide leading-tight mt-1">
-          BORA CONSTRUIR SUA MÁQUINA
-          <br />
-          <span className="text-base bg-white text-[#090909] px-2 py-0.5 rounded">
-            QUE VENDE 24 HORAS NA SHOPEE
-          </span>
-        </p>
-
-        {/* Terceira frase + seta */}
-        <div className="flex flex-col items-center mt-3 gap-1">
-          <p className="text-sm text-white/50 font-medium">
-            Entenda qual o melhor caminho para o seu momento
-          </p>
-          <svg
-            width="20"
-            height="28"
-            viewBox="0 0 20 28"
-            fill="none"
-            className="text-white/40 animate-bounce"
-          >
-            <path
-              d="M10 0v24M2 16l8 10 8-10"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
+      {/* Nome manuscrito */}
+      <div className="relative z-20 -mt-4 text-center">
+        <span
+          className="text-5xl sm:text-6xl text-white drop-shadow-[0_4px_20px_rgba(240,138,45,0.22)] whitespace-nowrap"
+          style={{ fontFamily: "Blacksword" }}
+        >
+          Tiago Palermo
+        </span>
       </div>
     </motion.div>
   );
 }
 
 /* ─────────────────────────────────────────────
-   CARD
+   CARD 1 — IMERSÃO (título simples, estilo hero)
    ───────────────────────────────────────────── */
 
-function ProductCard({ card }: { card: CardItem }) {
+function CardImersao() {
   return (
     <motion.a
       variants={fadeUp}
-      href={card.href}
+      href={imersao.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative block w-full rounded-[20px] overflow-hidden border border-white/[0.06] bg-[#111111] transition-all duration-500 hover:border-white/[0.14]"
-      whileHover={{ y: -3, boxShadow: `0 12px 50px -10px ${card.glow}` }}
+      className="group relative block w-full rounded-[20px] overflow-hidden border border-[#F08A2D]/20 bg-gradient-to-br from-[#1A1008] via-[#0E0E0E] to-[#0E0E0E] transition-all duration-500 hover:border-[#F08A2D]/50"
+      whileHover={{ y: -3, boxShadow: "0 12px 50px -10px rgba(240,138,45,0.35)" }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="relative z-10 p-5 sm:p-6">
-        {/* Topo: ícone + eyebrow + título */}
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 rounded-xl bg-white/[0.05] border border-white/[0.06] flex items-center justify-center shrink-0">
-            <span
-              className={`text-sm font-black bg-gradient-to-br ${card.accent} bg-clip-text text-transparent`}
-            >
-              {card.fallbackIcon}
-            </span>
-          </div>
-          <div>
-            <span className="block text-[9px] font-bold tracking-[0.2em] text-white/30">
-              {card.eyebrow}
-            </span>
-            <h3 className="text-base font-bold text-white leading-tight">
-              {card.title}
-            </h3>
-          </div>
+      <div className="absolute top-0 right-0 w-[280px] h-[280px] bg-[#F08A2D]/[0.08] rounded-full blur-[100px]" />
+      <div className="relative z-10 px-6 py-7 flex items-center justify-between gap-4">
+        <div>
+          <h3 className="text-[18px] sm:text-[19px] font-extrabold text-white leading-tight tracking-tight">
+            {imersao.title}
+          </h3>
+          <p className="text-[12px] font-medium text-white/50 mt-1">
+            Para quem quer começar do jeito certo
+          </p>
+        </div>
+        <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#F08A2D] to-amber-400 flex items-center justify-center shadow-lg shadow-[#F08A2D]/30 group-hover:scale-110 transition-transform">
+          <ChevronRight className="w-5 h-5 text-[#0E0E0E]" strokeWidth={3} />
+        </div>
+      </div>
+    </motion.a>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   SECTION HEADER — Mentoria Certificada Shopee
+   ───────────────────────────────────────────── */
+
+function CertifiedSectionHeader() {
+  return (
+    <motion.div
+      variants={fadeUp}
+      className="flex items-center justify-center gap-2 mt-8 mb-4"
+    >
+      {/* Selo verificado azul (Twitter-style) */}
+      <svg className="w-5 h-5" viewBox="0 0 22 22" fill="none">
+        <path
+          d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.881-.633-.131-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"
+          fill="#1D9BF0"
+        />
+      </svg>
+      <span className="text-[13px] font-bold text-white uppercase tracking-wide">
+        Mentoria Certificada Shopee
+      </span>
+    </motion.div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   CARD 2 — MENTORIA (FEATURED, animado, com logo)
+   ───────────────────────────────────────────── */
+
+function CardMentoria() {
+  return (
+    <motion.a
+      variants={fadeUp}
+      href={mentoria.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group relative block w-full rounded-[22px] overflow-hidden border border-[#F08A2D]/40 transition-all duration-500"
+      whileHover={{ y: -4, scale: 1.01 }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {/* Gradiente de fundo animado */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-[#F08A2D] via-[#D4621A] to-[#8C3A0F]"
+        animate={{
+          backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        style={{ backgroundSize: "200% 200%" }}
+      />
+
+      {/* Shine overlay animado */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+        animate={{ x: ["-100%", "100%"] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+      />
+
+      {/* Glow blobs */}
+      <div className="absolute -top-20 -right-20 w-[200px] h-[200px] bg-amber-300/30 rounded-full blur-[80px]" />
+      <div className="absolute -bottom-20 -left-20 w-[200px] h-[200px] bg-[#D4A853]/30 rounded-full blur-[80px]" />
+
+      <div className="relative z-10 px-6 py-8 sm:py-10 flex flex-col items-center text-center">
+        {/* Logo da mentoria (usuário vai adicionar em /public/images/logo-mentoria.png) */}
+        <div className="h-[80px] sm:h-[100px] flex items-center justify-center mb-4">
+          <img
+            src={mentoria.logo}
+            alt={mentoria.title}
+            className="max-h-full max-w-[260px] object-contain drop-shadow-2xl"
+            onError={(e) => {
+              // Fallback enquanto o logo não existe
+              e.currentTarget.style.display = "none";
+              const sibling = e.currentTarget.nextElementSibling as HTMLElement;
+              if (sibling) sibling.style.display = "block";
+            }}
+          />
+          <h3
+            className="hidden text-3xl font-black text-white uppercase tracking-tight drop-shadow-lg"
+            style={{ letterSpacing: "-0.02em" }}
+          >
+            {mentoria.title}
+          </h3>
         </div>
 
-        {/* Descrição */}
-        <p className="text-[13px] text-white/50 leading-relaxed mb-5">
-          {card.subtitle}
-        </p>
+        {/* CTA pill */}
+        <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#0E0E0E] text-[12px] font-extrabold tracking-[0.15em] uppercase shadow-xl group-hover:gap-3 transition-all">
+          Saiba mais
+          <ChevronRight className="w-4 h-4" strokeWidth={3} />
+        </div>
+      </div>
+    </motion.a>
+  );
+}
 
-        {/* CTA */}
-        <div
-          className={`inline-flex items-center gap-2 text-[11px] font-bold tracking-wider text-white px-5 py-2.5 rounded-full bg-gradient-to-r ${card.accent} shadow-lg transition-all duration-300 group-hover:gap-3`}
-        >
-          {card.cta}
-          <ChevronRight className="w-3.5 h-3.5" />
+/* ─────────────────────────────────────────────
+   CARD SLIM (cards 3, 4, 5 — só título)
+   ───────────────────────────────────────────── */
+
+function CardSlim({ title, href }: { title: string; href: string }) {
+  return (
+    <motion.a
+      variants={fadeUp}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group relative block w-full rounded-[20px] overflow-hidden border border-[#F08A2D]/20 bg-gradient-to-br from-[#1A1008] via-[#0E0E0E] to-[#0E0E0E] transition-all duration-500 hover:border-[#F08A2D]/50"
+      whileHover={{ y: -3, boxShadow: "0 12px 50px -10px rgba(240,138,45,0.35)" }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="absolute top-0 right-0 w-[280px] h-[280px] bg-[#F08A2D]/[0.08] rounded-full blur-[100px]" />
+      <div className="relative z-10 px-6 py-5 flex items-center justify-between gap-4">
+        <h3 className="text-[16px] sm:text-[17px] font-extrabold text-white leading-tight tracking-tight">
+          {title}
+        </h3>
+        <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#F08A2D] to-amber-400 flex items-center justify-center shadow-lg shadow-[#F08A2D]/30 group-hover:scale-110 transition-transform">
+          <ChevronRight className="w-5 h-5 text-[#0E0E0E]" strokeWidth={3} />
         </div>
       </div>
     </motion.a>
@@ -225,16 +267,30 @@ export default function Page() {
       >
         <HeroBanner />
 
-        <div className="w-full flex flex-col gap-4">
-          {cards.map((card) => (
-            <ProductCard key={card.title} card={card} />
+        {/* Card 1 — Imersão */}
+        <div className="w-full mb-3">
+          <CardImersao />
+        </div>
+
+        {/* Seção: Mentoria Certificada Shopee */}
+        <CertifiedSectionHeader />
+
+        {/* Card 2 — Mentoria FEATURED */}
+        <div className="w-full mb-6">
+          <CardMentoria />
+        </div>
+
+        {/* Cards 3, 4, 5 — slim */}
+        <div className="w-full flex flex-col gap-2.5">
+          {outrosCards.map((card) => (
+            <CardSlim key={card.title} title={card.title} href={card.href} />
           ))}
         </div>
 
         {/* Socials */}
         <motion.div
           variants={fadeUp}
-          className="flex flex-col items-center mt-8 gap-4"
+          className="flex flex-col items-center mt-10 gap-4"
         >
           <div className="flex items-center gap-3">
             <a
