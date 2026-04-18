@@ -118,22 +118,22 @@ function CardImersao() {
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="absolute top-0 right-0 w-[280px] h-[280px] bg-[#F08A2D]/[0.08] rounded-full blur-[100px]" />
-      <div className="relative z-10 px-6 py-7 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-4 min-w-0">
-          <div className="shrink-0 w-11 h-11 rounded-xl bg-[#F08A2D]/10 border border-[#F08A2D]/20 flex items-center justify-center">
-            <imersao.icon className="w-5 h-5 text-[#F08A2D]" strokeWidth={2.2} />
+      <div className="relative z-10 px-4 py-3 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="shrink-0 w-9 h-9 rounded-lg bg-[#F08A2D]/10 border border-[#F08A2D]/20 flex items-center justify-center">
+            <imersao.icon className="w-4 h-4 text-[#F08A2D]" strokeWidth={2.2} />
           </div>
           <div className="min-w-0">
-            <h3 className="text-[18px] sm:text-[19px] font-extrabold text-white leading-tight tracking-tight">
+            <h3 className="text-[14px] sm:text-[15px] font-extrabold text-white leading-tight tracking-tight">
               {imersao.title}
             </h3>
-            <p className="text-[12px] font-medium text-white/50 mt-1">
+            <p className="text-[11px] font-medium text-white/50 mt-0.5">
               Para quem quer começar do jeito certo
             </p>
           </div>
         </div>
-        <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#F08A2D] to-amber-400 flex items-center justify-center shadow-lg shadow-[#F08A2D]/30 group-hover:scale-110 transition-transform">
-          <ChevronRight className="w-5 h-5 text-[#0E0E0E]" strokeWidth={3} />
+        <div className="shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-[#F08A2D] to-amber-400 flex items-center justify-center shadow-lg shadow-[#F08A2D]/30 group-hover:scale-110 transition-transform">
+          <ChevronRight className="w-4 h-4 text-[#0E0E0E]" strokeWidth={3} />
         </div>
       </div>
     </motion.a>
@@ -234,24 +234,24 @@ function CardSlim({ title, href, subtitle, icon: Icon }: { title: string; href: 
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="absolute top-0 right-0 w-[280px] h-[280px] bg-[#F08A2D]/[0.08] rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      <div className="relative z-10 px-6 py-5 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-4 min-w-0">
-          <div className="shrink-0 w-11 h-11 rounded-xl bg-[#F08A2D]/10 border border-[#F08A2D]/20 flex items-center justify-center">
-            <Icon className="w-5 h-5 text-[#F08A2D]" strokeWidth={2.2} />
+      <div className="relative z-10 px-4 py-3 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="shrink-0 w-9 h-9 rounded-lg bg-[#F08A2D]/10 border border-[#F08A2D]/20 flex items-center justify-center">
+            <Icon className="w-4 h-4 text-[#F08A2D]" strokeWidth={2.2} />
           </div>
           <div className="min-w-0">
-            <h3 className="text-[16px] sm:text-[17px] font-extrabold text-white/90 leading-tight tracking-tight transition-colors duration-300 group-hover:text-white">
+            <h3 className="text-[14px] sm:text-[15px] font-extrabold text-white/90 leading-tight tracking-tight transition-colors duration-300 group-hover:text-white">
               {title}
             </h3>
             {subtitle && (
-              <p className="text-[12px] font-medium text-white/50 mt-1">
+              <p className="text-[11px] font-medium text-white/50 mt-0.5">
                 {subtitle}
               </p>
             )}
           </div>
         </div>
-        <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#F08A2D] to-amber-400 flex items-center justify-center shadow-lg shadow-[#F08A2D]/30 group-hover:scale-110 transition-transform">
-          <ChevronRight className="w-5 h-5 text-[#0E0E0E]" strokeWidth={3} />
+        <div className="shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-[#F08A2D] to-amber-400 flex items-center justify-center shadow-lg shadow-[#F08A2D]/30 group-hover:scale-110 transition-transform">
+          <ChevronRight className="w-4 h-4 text-[#0E0E0E]" strokeWidth={3} />
         </div>
       </div>
     </motion.a>
