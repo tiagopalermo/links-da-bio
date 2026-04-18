@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, GraduationCap, Stethoscope, Briefcase, Calculator, type LucideIcon } from "lucide-react";
 
 /* ─────────────────────────────────────────────
    CONTEÚDO — edite apenas esta seção
@@ -16,6 +16,7 @@ const hero = {
 const imersao = {
   title: "Imersão Dominando a Shopee",
   href: "https://imersao-page.vercel.app/",
+  icon: GraduationCap,
 };
 
 // Card 2 — Mentoria (FEATURED, animado, com logo)
@@ -26,18 +27,24 @@ const mentoria = {
 };
 
 // Cards 3, 4, 5 — slim (só título + seta)
-const outrosCards = [
+const outrosCards: { title: string; href: string; subtitle?: string; icon: LucideIcon }[] = [
   {
     title: "Diagnóstico de Conta Shopee",
-    href: "https://tiagopalermo.com.br/escalablack/",
+    subtitle: "Analisamos sua conta da Shopee em 40 minutos",
+    href: "https://diagnostico-shopee.vercel.app/",
+    icon: Stethoscope,
   },
   {
     title: "Gerenciamento de Conta",
+    subtitle: "Cuidamos da sua Conta da Shopee pra você",
     href: "https://tiago85.yayforms.net/OKRgkAQ",
+    icon: Briefcase,
   },
   {
     title: "Calculadora de Lucro e ROAS",
+    subtitle: "Saiba exatamente qual seu lucro de verdade",
     href: "https://isca-shopee.vercel.app/",
+    icon: Calculator,
   },
 ];
 
@@ -112,13 +119,18 @@ function CardImersao() {
     >
       <div className="absolute top-0 right-0 w-[280px] h-[280px] bg-[#F08A2D]/[0.08] rounded-full blur-[100px]" />
       <div className="relative z-10 px-6 py-7 flex items-center justify-between gap-4">
-        <div>
-          <h3 className="text-[18px] sm:text-[19px] font-extrabold text-white leading-tight tracking-tight">
-            {imersao.title}
-          </h3>
-          <p className="text-[12px] font-medium text-white/50 mt-1">
-            Para quem quer começar do jeito certo
-          </p>
+        <div className="flex items-center gap-4 min-w-0">
+          <div className="shrink-0 w-11 h-11 rounded-xl bg-[#F08A2D]/10 border border-[#F08A2D]/20 flex items-center justify-center">
+            <imersao.icon className="w-5 h-5 text-[#F08A2D]" strokeWidth={2.2} />
+          </div>
+          <div className="min-w-0">
+            <h3 className="text-[18px] sm:text-[19px] font-extrabold text-white leading-tight tracking-tight">
+              {imersao.title}
+            </h3>
+            <p className="text-[12px] font-medium text-white/50 mt-1">
+              Para quem quer começar do jeito certo
+            </p>
+          </div>
         </div>
         <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#F08A2D] to-amber-400 flex items-center justify-center shadow-lg shadow-[#F08A2D]/30 group-hover:scale-110 transition-transform">
           <ChevronRight className="w-5 h-5 text-[#0E0E0E]" strokeWidth={3} />
@@ -163,30 +175,16 @@ function CardMentoria() {
       href={mentoria.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative block w-full rounded-[22px] overflow-hidden border border-[#F08A2D]/40 transition-all duration-500"
+      className="group relative block w-full rounded-[22px] overflow-hidden border border-[#FFB780]/30 bg-[#F08A2D] transition-all duration-500 shadow-[0_0_60px_-15px_rgba(240,138,45,0.5)] hover:shadow-[0_0_80px_-10px_rgba(240,138,45,0.7)]"
       whileHover={{ y: -4, scale: 1.01 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
-      {/* Gradiente de fundo animado */}
+      {/* Shine overlay animado — sutil */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-[#F08A2D] via-[#D4621A] to-[#8C3A0F]"
-        animate={{
-          backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-        style={{ backgroundSize: "200% 200%" }}
-      />
-
-      {/* Shine overlay animado */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none"
         animate={{ x: ["-100%", "100%"] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 3 }}
       />
-
-      {/* Glow blobs */}
-      <div className="absolute -top-20 -right-20 w-[200px] h-[200px] bg-amber-300/30 rounded-full blur-[80px]" />
-      <div className="absolute -bottom-20 -left-20 w-[200px] h-[200px] bg-[#D4A853]/30 rounded-full blur-[80px]" />
 
       <div className="relative z-10 px-6 py-8 sm:py-10 flex flex-col items-center text-center">
         {/* Logo da mentoria (usuário vai adicionar em /public/images/logo-mentoria.png) */}
@@ -224,7 +222,7 @@ function CardMentoria() {
    CARD SLIM (cards 3, 4, 5 — só título)
    ───────────────────────────────────────────── */
 
-function CardSlim({ title, href }: { title: string; href: string }) {
+function CardSlim({ title, href, subtitle, icon: Icon }: { title: string; href: string; subtitle?: string; icon: LucideIcon }) {
   return (
     <motion.a
       variants={fadeUp}
@@ -235,11 +233,23 @@ function CardSlim({ title, href }: { title: string; href: string }) {
       whileHover={{ y: -3, boxShadow: "0 12px 50px -10px rgba(240,138,45,0.35)" }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="absolute top-0 right-0 w-[280px] h-[280px] bg-[#F08A2D]/[0.08] rounded-full blur-[100px]" />
+      <div className="absolute top-0 right-0 w-[280px] h-[280px] bg-[#F08A2D]/[0.08] rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       <div className="relative z-10 px-6 py-5 flex items-center justify-between gap-4">
-        <h3 className="text-[16px] sm:text-[17px] font-extrabold text-white leading-tight tracking-tight">
-          {title}
-        </h3>
+        <div className="flex items-center gap-4 min-w-0">
+          <div className="shrink-0 w-11 h-11 rounded-xl bg-[#F08A2D]/10 border border-[#F08A2D]/20 flex items-center justify-center">
+            <Icon className="w-5 h-5 text-[#F08A2D]" strokeWidth={2.2} />
+          </div>
+          <div className="min-w-0">
+            <h3 className="text-[16px] sm:text-[17px] font-extrabold text-white/90 leading-tight tracking-tight transition-colors duration-300 group-hover:text-white">
+              {title}
+            </h3>
+            {subtitle && (
+              <p className="text-[12px] font-medium text-white/50 mt-1">
+                {subtitle}
+              </p>
+            )}
+          </div>
+        </div>
         <div className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#F08A2D] to-amber-400 flex items-center justify-center shadow-lg shadow-[#F08A2D]/30 group-hover:scale-110 transition-transform">
           <ChevronRight className="w-5 h-5 text-[#0E0E0E]" strokeWidth={3} />
         </div>
@@ -283,7 +293,7 @@ export default function Page() {
         {/* Cards 3, 4, 5 — slim */}
         <div className="w-full flex flex-col gap-2.5">
           {outrosCards.map((card) => (
-            <CardSlim key={card.title} title={card.title} href={card.href} />
+            <CardSlim key={card.title} title={card.title} href={card.href} subtitle={card.subtitle} icon={card.icon} />
           ))}
         </div>
 
