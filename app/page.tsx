@@ -43,7 +43,7 @@ const outrosCards: { title: string; href: string; subtitle?: string; icon: Lucid
   {
     title: "Calculadora de Lucro e ROAS",
     subtitle: "Saiba exatamente qual seu lucro de verdade",
-    href: "https://isca-shopee.vercel.app/",
+    href: "https://calculadora-shopee-ads.vercel.app/",
     icon: Calculator,
   },
 ];
